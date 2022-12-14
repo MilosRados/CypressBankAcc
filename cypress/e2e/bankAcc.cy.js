@@ -1,9 +1,11 @@
 /// <reference types="cypress"/>
 
 import { RegPage } from "./pages/reg_page"
+import { LoginPage } from "./pages/login_page"
 
 
 const regPage = new RegPage()
+const logInPage = new LoginPage()
 
 describe('Testing Bank Account', () =>{
 
@@ -16,20 +18,13 @@ regPage.registerPlaceOfLiving()
 regPage.registerPhoneSsn()
 regPage.registerUserPassConf()
 
+
 })
 
 it('Customer Login', () => {
-    cy.visit('https://parabank.parasoft.com/parabank/index.htm')
 
-cy.get('input[name="username"]').type('MickoRourke').should('have.value','MickoRourke')
+    logInPage.enterUserPassSub()
 
-cy.get('input[name="password"]').type('$ifra14').should('have.value','$ifra14')
-
-cy.get('input[value="Log In"]').click().should('be.enabled')
-
-cy.url().should('eq','https://parabank.parasoft.com/parabank/overview.htm')
-
-cy.contains('Accounts Overview').should('be.visible')
 
 
 
